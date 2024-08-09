@@ -1,4 +1,7 @@
-# Jupyter Remote Desktop Proxy
+# FORK OF Jupyter Remote Desktop Proxy for use in McStas- and McXtrace related containers
+
+## *¨Main is meant to kept tightly connected to upstream for easy updating* ##
+ (https://github.com/jupyterhub/jupyter-remote-desktop-proxy)
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jupyterhub/jupyter-remote-desktop-proxy/HEAD?urlpath=desktop)
 [![Test](https://github.com/jupyterhub/jupyter-remote-desktop-proxy/actions/workflows/test.yaml/badge.svg)](https://github.com/jupyterhub/jupyter-remote-desktop-proxy/actions/workflows/test.yaml)
