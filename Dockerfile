@@ -1,5 +1,4 @@
-FROM quay.io/jupyter/base-notebook:4d70cf8da953
-# Means Python 3.10, see https://github.com/jupyter/docker-stacks
+FROM quay.io/jupyter/base-notebook:latest
 
 USER root
 
@@ -8,13 +7,13 @@ RUN apt-get -y -qq update && apt-get -y -qq install software-properties-common &
 && echo Pin: release o=LP-PPA-mozillateam >> /etc/apt/preferences.d/mozilla-firefox \
 && echo Pin-Priority: 1001 >> /etc/apt/preferences.d/mozilla-firefox \
 && apt-get install -y dbus-x11 \
-   xfce4 \
-   xfce4-panel \
-   xfce4-session \
-   xfce4-settings \
-   xorg \
-   xubuntu-icon-theme \
-   fonts-dejavu \
+        xfce4 \
+        xfce4-panel \
+        xfce4-session \
+        xfce4-settings \
+        xorg \
+        xubuntu-icon-theme \
+        fonts-dejavu \
    view3dscene \
    python3-pyqt5 \
    xdg-utils \
@@ -25,7 +24,6 @@ RUN apt-get -y -qq update && apt-get -y -qq install software-properties-common &
    octave \
    git \
    firefox \
-   libxm4  \
     # Disable the automatic screenlock since the account password is unknown
  && apt-get -y -qq remove xfce4-screensaver \
     # chown $HOME to workaround that the xorg installation creates a
@@ -59,24 +57,25 @@ RUN if [ "${vncserver}" = "turbovnc" ]; then \
             turbovnc \
         ; \
         rm -rf /var/lib/apt/lists/*; \
-    fi
+    fi \
+  && apt-get -y -qq clean \
+  && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get -y -qq clean && rm -rf /var/lib/apt/lists/* && \
-   WORKDIR=${PWD} && wget https://www.ill.eu/sites/fullprof/downloads/FullProf_Suite_July2024_Linux64_ifx.tgz && \
-   mkdir /opt/FullProf && cd /opt/FullProf && tar xzf ${WORKDIR}/FullProf_Suite_July2024_Linux64_ifx.tgz && \
-   cd ${WORKDIR} && rm FullProf_Suite_July2024_Linux64_ifx.tgz && \
-   chown -R $NB_UID:$NB_GID $HOME /opt/FullProf
-
-ADD . /opt/install
-RUN cd /opt/install && \
-    conda config --add channels mantid && \
-    fix-permissions /opt/install 
 
 USER $NB_USER
-RUN cd /opt/FullProf && /opt/FullProf/Set_FULLPROF_Envi
 
-RUN cd /opt/install && \
-   mamba env update -n base --file environment.yml && \
-   mamba clean -all -y
+# Install the environment first, and then install the package separately for faster rebuilds
+COPY --chown=$NB_UID:$NB_GID environment.yml /tmp
+RUN . /opt/conda/bin/activate && \
+    mamba env update --quiet --file /tmp/environment.yml && \
+    mamba env update -n base --file environment.yml && \
+    mamba clean -all -y
 
-COPY McStasScript/configuration.yaml  /opt/conda/lib/python3.10/site-packages/mcstasscript/
+COPY --chown=$NB_UID:$NB_GID McStasScript/configuration.yaml /tmp
+
+RUN find /opt/conda/lib/ -type d -name mcstasscript -exec cp /tmp/configuration.yaml \{\} \;
+
+COPY --chown=$NB_UID:$NB_GID . /opt/install
+RUN . /opt/conda/bin/activate && \
+    pip install /opt/install
+
