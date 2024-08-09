@@ -1,6 +1,20 @@
 channels:
   - conda-forge
+  - mantid
 dependencies:
-  - jupyter-server-proxy>=4.3.0
-  - jupyterhub-singleuser
+  - mantidworkbench
+  - jupyter-server-proxy>=1.4
   - pip
+  - websockify
+  - jupytext
+  - nodejs
+  - mcstas
+  - ncrystal
+  - mcpl
+  - nexus
+  - openmpi
+  - nbgitpuller
+  - pip:
+      - McStasScript
+      - guide_bot
+      - .

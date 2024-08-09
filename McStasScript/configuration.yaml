@@ -1,0 +1,5 @@
+other:
+  characters_per_line: 85
+paths:
+  mcrun_path: /opt/conda/bin
+  mcstas_path: /opt/conda/share/mcstas/resources
