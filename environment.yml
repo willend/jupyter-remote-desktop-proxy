@@ -1,14 +1,14 @@
 channels:
   - conda-forge
-  - mantid
 dependencies:
-  - mantidworkbench
   - jupyter-server-proxy>=1.4
   - pip
   - websockify
   - jupytext
   - nodejs
   - mcstas
+  - mcxtrace
+  - xraylib
   - ncrystal
   - mcpl
   - nexus
