@@ -7,6 +7,8 @@ RUN apt-get -y -qq update && apt-get -y -qq install software-properties-common &
 && echo Pin: release o=LP-PPA-mozillateam >> /etc/apt/preferences.d/mozilla-firefox \
 && echo Pin-Priority: 1001 >> /etc/apt/preferences.d/mozilla-firefox \
 && apt-get install -y dbus-x11 \
+   # xclip is added as jupyter-remote-desktop-proxy's tests requires it
+   xclip \
    xfce4 \
    xfce4-panel \
    xfce4-session \
