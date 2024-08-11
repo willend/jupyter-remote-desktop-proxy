@@ -7,13 +7,13 @@ RUN apt-get -y -qq update && apt-get -y -qq install software-properties-common &
 && echo Pin: release o=LP-PPA-mozillateam >> /etc/apt/preferences.d/mozilla-firefox \
 && echo Pin-Priority: 1001 >> /etc/apt/preferences.d/mozilla-firefox \
 && apt-get install -y dbus-x11 \
-        xfce4 \
-        xfce4-panel \
-        xfce4-session \
-        xfce4-settings \
-        xorg \
-        xubuntu-icon-theme \
-        fonts-dejavu \
+   xfce4 \
+   xfce4-panel \
+   xfce4-session \
+   xfce4-settings \
+   xorg \
+   xubuntu-icon-theme \
+   fonts-dejavu \
    view3dscene \
    python3-pyqt5 \
    xdg-utils \
@@ -61,21 +61,20 @@ RUN if [ "${vncserver}" = "turbovnc" ]; then \
   && apt-get -y -qq clean \
   && rm -rf /var/lib/apt/lists/*
 
+ADD . /opt/install
+RUN cd /opt/install && \
+    fix-permissions /opt/install 
 
 USER $NB_USER
 
-# Install the environment first, and then install the package separately for faster rebuilds
-COPY --chown=$NB_UID:$NB_GID environment.yml /tmp
-RUN . /opt/conda/bin/activate && \
-    mamba env update --quiet --file /tmp/environment.yml && \
-    mamba env update -n base --file environment.yml && \
-    mamba clean -all -y
+RUN cd /opt/install && \
+   mamba env update -n base --file environment.yml && \
+   mamba clean -all -y
 
 COPY --chown=$NB_UID:$NB_GID McStasScript/configuration.yaml /tmp
 
 RUN find /opt/conda/lib/ -type d -name mcstasscript -exec cp /tmp/configuration.yaml \{\} \;
 
-COPY --chown=$NB_UID:$NB_GID . /opt/install
 RUN . /opt/conda/bin/activate && \
     pip install /opt/install
 
