@@ -16,14 +16,17 @@ dependencies:
   - ipympl
   - ipython
   - ipywidgets
+  - pythreejs
   - jupyterlab
   - python-graphviz
   - scipp::plopp
   - scipp::scipp
   - scipp::scippneutron
   - scipp::scippnexus
+  - scitacean
   - mpltoolbox
   - pandas
+  - pooch
   - scipy
   - numpy<2
   - git
