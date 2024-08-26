@@ -25,6 +25,7 @@ dependencies:
   - mpltoolbox
   - pandas
   - scipy
+  - numpy<2
   - git
   - pip
   - pip:
