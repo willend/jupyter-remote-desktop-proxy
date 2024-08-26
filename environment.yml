@@ -27,6 +27,11 @@ dependencies:
   - pandas
   - scipy
   - numpy<2
+  - emcee
+  - dynesty
+  - ply
+  - corner
+  - tqdm
   - git
   - pip
   - pip:
