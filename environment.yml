@@ -23,6 +23,7 @@ dependencies:
   - scipp::scippneutron
   - scipp::scippnexus
   - mpltoolbox
+  - pandas
   - scipy
   - git
   - pip
