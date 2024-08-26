@@ -40,3 +40,4 @@ dependencies:
       - easyscience
       - McStasScript
       - jupyterquiz
+      - myst_nb
