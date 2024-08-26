@@ -6,7 +6,7 @@ dependencies:
   - websockify
   - jupytext
   - nodejs
-  - mcstas
+  - mcstas=3.4.42
   - ncrystal
   - mcpl
   - nexus
