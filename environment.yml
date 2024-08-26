@@ -21,7 +21,9 @@ dependencies:
   - scipp::plopp
   - scipp::scipp
   - scipy
+  - git
   - pip
   - pip:
       - McStasScript
       - guide_bot
+      - jupyterquiz
