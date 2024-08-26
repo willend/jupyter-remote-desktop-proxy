@@ -3,4 +3,25 @@ channels:
 dependencies:
   - jupyter-server-proxy>=4.3.0
   - jupyterhub-singleuser
+  - websockify
+  - jupytext
+  - nodejs
+  - mcstas
+  - ncrystal
+  - mcpl
+  - nexus
+  - openmpi
+  - nbgitpuller
+  - h5py
+  - ipympl
+  - ipython
+  - ipywidgets
+  - jupyterlab
+  - python-graphviz
+  - scipp::plopp
+  - scipp::scipp
+  - scipy
   - pip
+  - pip:
+      - McStasScript
+      - guide_bot
