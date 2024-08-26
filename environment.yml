@@ -22,6 +22,7 @@ dependencies:
   - scipp::scipp
   - scipp::scippneutron
   - scipp::scippnexus
+  - scitacean
   - mpltoolbox
   - pandas
   - scipy
