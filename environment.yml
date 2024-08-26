@@ -20,10 +20,13 @@ dependencies:
   - python-graphviz
   - scipp::plopp
   - scipp::scipp
+  - scipp::scippneutron
+  - scipp::scippnexus
+  - mpltoolbox
   - scipy
   - git
   - pip
   - pip:
+      - easyscience
       - McStasScript
-      - guide_bot
       - jupyterquiz
