@@ -6,8 +6,8 @@ dependencies:
   - websockify
   - jupytext
   - nodejs
-  - mcstas
-  - mcxtrace
+  - mcstas=3.5.1
+  - mcxtrace=3.5.1
   - xraylib
   - ncrystal
   - mcpl
