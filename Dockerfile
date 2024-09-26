@@ -71,7 +71,7 @@ USER $NB_USER
 
 RUN cd /opt/install && \
    mamba env update -n base --file environment.yml && \
-   mamba clean -all -y
+   mamba clean -all -y && /opt/conda/bin/mcdoc -i && /opt/conda/bin/mxdoc -i
 
 COPY --chown=$NB_UID:$NB_GID McStasScript/configuration.yaml /tmp
 
