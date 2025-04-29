@@ -6,8 +6,8 @@ dependencies:
   - websockify
   - jupytext
   - nodejs
-  - mcstas=3.5.24
-  - mcxtrace=3.5.24
+  - mcstas=3.5.27
+  - mcxtrace=3.5.27
   - mccode-antlr
   - mcstasscript
   - rsync
